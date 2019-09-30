@@ -54,6 +54,13 @@ if node['platform_family'] == 'windows'
       default['powershell']['powershell5']['checksum'] = 'a8d788fa31b02a999cc676fb546fc782e86c2a0acd837976122a1891ceee42c0'
     end
     default['powershell']['powershell5']['timeout'] = 600
+  when '10.0'
+    case node['kernel']['machine']
+    when 'x86_64'
+      default['powershell']['powershell5']['url'] = 'https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win8.1AndW2K12R2-KB3191564-x64.msu'
+      default['powershell']['powershell5']['checksum'] = 'a8d788fa31b02a999cc676fb546fc782e86c2a0acd837976122a1891ceee42c0'
+    end
+    default['powershell']['powershell5']['timeout'] = 600
   else
     default['powershell']['powershell5']['timeout'] = 600
   end
