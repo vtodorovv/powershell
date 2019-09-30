@@ -49,8 +49,7 @@ if platform_family?('windows')
       not_if { ::Powershell::VersionHelper.powershell_version?(node['powershell']['powershell5']['version']) }
     end
 
-  elsif (node['platform_version'].to_f).between? (6.1,9.9)
-
+  elsif node['platform_version'].to_f.between?(6.1, 9.9)
     msu_package 'Windows Management Framework Core 5.1' do # ~FC009
       source node['powershell']['powershell5']['url']
       checksum node['powershell']['powershell5']['checksum']
