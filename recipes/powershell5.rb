@@ -49,7 +49,7 @@ if platform_family?('windows')
       not_if { ::Powershell::VersionHelper.powershell_version?(node['powershell']['powershell5']['version']) }
     end
 
-  elsif node['platform_version'].to_f > 6.1
+  elsif (node['platform_version'].to_f).between? (6.1,9.9)
 
     msu_package 'Windows Management Framework Core 5.1' do # ~FC009
       source node['powershell']['powershell5']['url']
@@ -61,9 +61,8 @@ if platform_family?('windows')
       notifies :reboot_now, 'reboot[powershell]', :immediately if node['powershell']['installation_reboot_mode'] != 'no_reboot'
       not_if { ::Powershell::VersionHelper.powershell_version?(node['powershell']['powershell5']['version']) }
     end
-
   else
-    Chef::Log.warn("PowerShell 5.1 is not supported on this version of Windows: #{node['platform_version']}")
+    Chef::Log.warn("PowerShell 5.1 is not supported, or there is no need to install it on this version of Windows: #{node['platform_version']}")
   end
 
 else
