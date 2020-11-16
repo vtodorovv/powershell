@@ -21,9 +21,6 @@
 if node['platform_family'] == 'windows'
   default['powershell']['powershell5']['version'] = '5.1'
 
-  # Make sure .NET 4.5 (minimum) is available.
-  default['ms_dotnet']['v4']['version'] = '4.5'
-
   case node['platform_version'].split('.')[0..1].join('.')
   when '6.1'
     case node['kernel']['machine']

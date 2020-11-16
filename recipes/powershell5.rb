@@ -22,8 +22,6 @@
 # https://www.microsoft.com/en-us/download/details.aspx?id=54616
 
 if platform_family?('windows')
-
-  include_recipe 'ms_dotnet::ms_dotnet4'
   include_recipe 'powershell::windows_reboot' unless node['powershell']['installation_reboot_mode'] == 'no_reboot'
 
   if node['platform_version'].to_f == 6.1
