@@ -23,11 +23,6 @@ describe 'powershell::powershell5' do
         end.converge(described_recipe)
       end
 
-      it 'includes ms_dotnet 4 recipe' do
-        allow(::Powershell::VersionHelper).to receive(:powershell_version?).and_return false
-        expect(chef_run).to include_recipe('ms_dotnet::ms_dotnet4')
-      end
-
       it 'does not includes powershell windows_reboot recipe by default' do
         expect(chef_run).to_not include_recipe('powershell::windows_reboot')
       end
